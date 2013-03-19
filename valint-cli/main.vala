@@ -16,7 +16,7 @@
 ** Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-public class Valint.Main : GLib.Object {
+public class Valint.Main : Object {
 
 	private static int level = 3;
 	private static bool debug = false;
@@ -57,6 +57,8 @@ public class Valint.Main : GLib.Object {
 		if (debug) {
 			Environment.set_variable ("G_MESSAGES_DEBUG", "all", true);
 		}
+
+		Valint.Stub.print_package_name ();
 
 		return 0;
 	}
