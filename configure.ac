@@ -1,0 +1,39 @@
+# configure.ac
+
+AC_INIT([Valint],[0.2])
+AC_CONFIG_SRCDIR([src/valint.vala])
+AC_CONFIG_HEADERS([config.h])
+
+AM_INIT_AUTOMAKE([no-dist-gzip dist-bzip2])
+
+# Enable silent rules is available
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+
+AM_MAINTAINER_MODE
+
+AC_PROG_CC
+AC_PROG_CC_STDC
+AM_PROG_VALAC([0.18.0])
+AC_PROG_INSTALL
+IT_PROG_INTLTOOL([0.35])
+
+pkg_modules="libvala-0.18 >= 0.18"
+VALINT_PACKAGES="--pkg libvala-0.18"
+PKG_CHECK_MODULES(VALINT, [$pkg_modules])
+AC_SUBST(VALINT_CFLAGS)
+AC_SUBST(VALINT_LIBS)
+AC_SUBST(VALINT_PACKAGES)
+
+GETTEXT_PACKAGE=valint
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Gettext Package])
+AC_SUBST(GETTEXT_PACKAGE)
+AM_GNU_GETTEXT_VERSION([1.11])
+AM_GLIB_GNU_GETTEXT
+
+AC_CONFIG_FILES([
+	Makefile
+	po/Makefile.in
+	src/Makefile
+	vapi/Makefile
+])
+AC_OUTPUT
