@@ -33,6 +33,7 @@ stamp-h1
 lcov.info
 tests/tests
 tests/coverage
+.testlogs*
 
 ABOUT-NLS
 intl
